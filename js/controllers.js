@@ -7,7 +7,7 @@ angular.module("startItControllers").controller("EventsController", ["$scope", "
 
     // Set map
     var mapProp = {
-      center:    new google.maps.LatLng(44.794175, 20.448529),
+      center:    new google.maps.LatLng(44.818611, 20.468056),
       zoom:      12,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
@@ -37,4 +37,4 @@ angular.module("startItControllers").controller("EventsController", ["$scope", "
       })
     });
   }]
-)
+);
