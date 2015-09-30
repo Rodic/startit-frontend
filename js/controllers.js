@@ -18,7 +18,8 @@ angular.module("startItControllers").controller("EventsController", ["$scope", "
       function(events, responseHeaders) {
         events.forEach(function(e) {
           var marker = new google.maps.Marker({
-            position:  new google.maps.LatLng(e.start_latitude, e.start_longitude)
+            position:  new google.maps.LatLng(e.start_latitude, e.start_longitude),
+            icon: 'images/' + e.type + '.png'
           });
 
           // Info windows
