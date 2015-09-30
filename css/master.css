@@ -2,9 +2,41 @@
 /*http://getbootstrap.com/components/#navbar-fixed-top*/
 body {
   padding-top: 70px;
+  background: #eee;
 }
 
 #googleMap {
   width: 100%;
   height: 600px;
+}
+
+.panel {
+  border-color: #cfd9D7;
+  border-radius: 2px;
+  box-shadow: 0 8px 17px rgba(0, 0, 0, .2);
+}
+
+.center-form {
+  width: 330px;
+  margin: 12% auto;
+}
+
+.signup-or-separator {
+  position: relative;
+  height: 34px;
+  text-align: center;
+  background: none;
+}
+
+.signup-or-separator hr {
+  width: 90%;
+  margin: -16px auto 10px auto;
+  border-top: 1px solid #dce0e0;
+}
+
+.signup-or-separator .text {
+  display: inline-block;
+  padding: 8px;
+  margin: 0;
+  background-color: #fff;
 }

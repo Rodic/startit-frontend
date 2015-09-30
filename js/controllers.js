@@ -38,3 +38,22 @@ angular.module("startItControllers").controller("EventsController", ["$scope", "
     });
   }]
 );
+
+angular.module("startItControllers").controller("SigninController", ["$scope", "$auth", "$location",
+  function($scope, $auth, $location) {
+
+    $scope.authenticate = function(provider) {
+      $auth.authenticate(provider).then(function() {
+        $location.path('/');
+      });
+    };
+
+    $scope.signout = function() {
+      $auth.logout();
+    };
+
+    $scope.isSinged = function() {
+      return $auth.isAuthenticated();
+    };
+  }
+]);
