@@ -6,34 +6,32 @@ angular.module("startItControllers").controller("EventsController", ["$scope", "
   function($scope, Events) {
 
     // Set map
-    var mapProp = {
-      center:    new google.maps.LatLng(44.818611, 20.468056),
-      zoom:      12,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+    $scope.mapConfig = {
+      center: {
+        latitude: 44.818611,
+        longitude: 20.468056
+      },
+      zoom: 12
     };
-    var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
     // Display events on the map
+    $scope.events = [];
+
     Events.get(
-      function(events, responseHeaders) {
-        events.forEach(function(e) {
-          var marker = new google.maps.Marker({
-            position:  new google.maps.LatLng(e.start_latitude, e.start_longitude),
-            icon: 'images/' + e.type + '.png'
+      function success(events, responseHeaders) {
+        events.forEach(function(e, i) {
+          $scope.events.push({
+            coords: {
+              latitude: e.start_latitude,
+              longitude: e.start_longitude
+            },
+            id: e.id,
+            icon: 'images/' + e.type + '.png',
+            display: false,
+            event: e
           });
-
-          // Info windows
-          var infowindow = new google.maps.InfoWindow({
-            content: e.description + '<br>' + e.start_time
-          });
-
-          google.maps.event.addListener(marker, 'click', function() {
-            infowindow.open(map,marker);
-          });
-
-          marker.setMap(map);
         },
-      function(httpResponse) {
+      function failure(httpResponse) {
         console.log(httpResponse);
       })
     });
@@ -42,6 +40,15 @@ angular.module("startItControllers").controller("EventsController", ["$scope", "
 
 angular.module("startItControllers").controller("EventsNewController", ["$scope", "Events",
   function($scope, Events) {
+
+    // Set map
+    $scope.mapConfig = {
+      center: {
+        latitude: 44.818611,
+        longitude: 20.468056
+      },
+      zoom: 12
+    };
 
     $scope.eventModel = {};
 
@@ -62,8 +69,8 @@ angular.module("startItControllers").controller("EventsNewController", ["$scope"
         }
       )
     };
-  }]
-);
+  }
+]);
 
 angular.module("startItControllers").controller("SigninController", ["$scope", "$auth", "$location",
   function($scope, $auth, $location) {

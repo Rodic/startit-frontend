@@ -5,7 +5,8 @@ angular.module("startIt", [
   "startItServices",
   "startItControllers",
   "startItDirectives",
-  "satellizer"
+  "satellizer",
+  "uiGmapgoogle-maps"
 ]);
 
 angular.module("startIt").config(["$routeProvider", "$authProvider",

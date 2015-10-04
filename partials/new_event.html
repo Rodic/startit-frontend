@@ -2,7 +2,7 @@
 
 <div class="row">
 
-  <div class="col-md-4">
+  <div class="col-md-4 panel">
 
     <form ng-submit="createEvent()">
 
@@ -46,11 +46,12 @@
       </div>
 
       <button type="submit" class="btn btn-primary">Submit</button>
+
     </form>
   </div>
 
   <div class="col-md-8">
-    {{ eventModel | json }}
+    <ui-gmap-google-map center="mapConfig.center" zoom="mapConfig.zoom"></ui-gmap-google-map>
   </div>
 
 </div>

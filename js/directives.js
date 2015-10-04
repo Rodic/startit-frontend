@@ -17,6 +17,6 @@ angular.module("startItDirectives").directive("dateTimePicker", [
             "dp.change", function() { elem.trigger( "change" ); }
           );
       }
-    }
+    };
   }]
 );
