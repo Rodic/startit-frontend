@@ -1,0 +1,56 @@
+<h2>Create new Event</h2>
+
+<div class="row">
+
+  <div class="col-md-4">
+
+    <form ng-submit="createEvent()">
+
+      <div class="form-group" ng-class="{ 'has-error': eventErrors['title'] }">
+        <label for="eventTitle">Title</label>
+        <input type="title" ng-model="eventModel.title" class="form-control" id="eventTitle" placeholder="Title (optional)">
+        <p class="help-block" ng-show="eventErrors['title']">{{ eventErrors['title'] }}</p>
+      </div>
+
+      <div class="form-group" ng-class="{ 'has-error': eventErrors['description'] }">
+        <label for="eventsDescription">Description</label>
+        <textarea ng-model="eventModel.description" class="form-control" rows="3" id="eventsDescription" placeholder="Describe event's goal, route and who can participate."></textarea>
+        <p class="help-block" ng-show="eventErrors['description']">{{ eventErrors['description'] }}</p>
+      </div>
+
+      <div class="form-group" ng-class="{ 'has-error': eventErrors['start_time'] }">
+        <label for="eventTime">Start time</label>
+        <input type="text" ng-model="eventModel.start_time" class="form-control" id="eventTime" placeholder="Select start time" data-date-time-picker />
+        <p class="help-block" ng-show="eventErrors['start_time']">{{ eventErrors['start_time'] }}</p>
+      </div>
+
+      <div class="form-group" ng-class="{ 'has-error': eventErrors['type'] }">
+        <label class="radio-inline">
+          <input type="radio" ng-model="eventModel.type" id="eventRadioRun" value="Run"> Run
+        </label>
+        <label class="radio-inline">
+          <input type="radio" ng-model="eventModel.type" id="eventRadioBikeRide" value="BikeRide"> Bike ride
+        </label>
+      </div>
+
+      <div class="form-group" ng-class="{ 'has-error': eventErrors['start_latitude'] }">
+        <label for="eventStartLatitude">Start latitude</label>
+        <input type="text" ng-model="eventModel.start_latitude" class="form-control" id="eventStartLatitude" placeholder="Pick it on the map">
+        <p class="help-block" ng-show="eventErrors['start_latitude']">{{ eventErrors['start_latitude'] }}</p>
+      </div>
+
+      <div class="form-group" ng-class="{ 'has-error': eventErrors['start_longitude'] }">
+        <label for="eventStartLongitude">Start longitude</label>
+        <input type="text" ng-model="eventModel.start_longitude" class="form-control" id="eventStartLongitude" placeholder="Pick it on the map">
+        <p class="help-block" ng-show="eventErrors['start_longitude']">{{ eventErrors['start_longitude'] }}</p>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+  <div class="col-md-8">
+    {{ eventModel | json }}
+  </div>
+
+</div>

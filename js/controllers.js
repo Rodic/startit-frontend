@@ -40,6 +40,32 @@ angular.module("startItControllers").controller("EventsController", ["$scope", "
   }]
 );
 
+angular.module("startItControllers").controller("EventsNewController", ["$scope", "Events",
+  function($scope, Events) {
+
+    $scope.eventModel = {};
+    $scope.eventErrors = {}
+
+    $scope.createEvent = function() {
+      Events.post(
+        { event: $scope.eventModel },
+        function success(event, responseHeaders) {
+          $scope.eventErrors = {};
+          console.log(event);
+        },
+        function failure(httpResponse) {
+          var errors = httpResponse.data;
+          $scope.eventErrors = {};
+          angular.forEach(errors, function(msg, field) {
+            $scope.eventErrors[field] = msg[0];
+          });
+          console.log($scope.eventErrors);
+        }
+      )
+    };
+  }]
+);
+
 angular.module("startItControllers").controller("SigninController", ["$scope", "$auth", "$location",
   function($scope, $auth, $location) {
 

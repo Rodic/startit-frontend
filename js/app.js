@@ -4,6 +4,7 @@ angular.module("startIt", [
   "ngRoute",
   "startItServices",
   "startItControllers",
+  "startItDirectives",
   "satellizer"
 ]);
 
@@ -13,6 +14,10 @@ angular.module("startIt").config(["$routeProvider", "$authProvider",
       when("/", {
         templateUrl: "partials/events.html",
         controller:  "EventsController"
+      }).
+      when("/events/new", {
+        templateUrl: "partials/new_event.html",
+        controller:  "EventsNewController"
       }).
       when("/signin", {
         templateUrl: "partials/signin.html",
