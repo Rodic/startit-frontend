@@ -44,7 +44,6 @@ angular.module("startItControllers").controller("EventsNewController", ["$scope"
   function($scope, Events) {
 
     $scope.eventModel = {};
-    $scope.eventErrors = {}
 
     $scope.createEvent = function() {
       Events.post(
