@@ -38,8 +38,8 @@ angular.module("startItControllers").controller("EventsController", ["$scope", "
   }]
 );
 
-angular.module("startItControllers").controller("EventsNewController", ["$scope", "Events",
-  function($scope, Events) {
+angular.module("startItControllers").controller("EventsNewController", ["$scope", "Events", "$location",
+  function($scope, Events, $location) {
 
     $scope.eventModel = {};
 
@@ -71,7 +71,7 @@ angular.module("startItControllers").controller("EventsNewController", ["$scope"
         { event: $scope.eventModel },
         function success(event, responseHeaders) {
           $scope.eventErrors = {};
-          console.log(event);
+          $location.path("/");
         },
         function failure(httpResponse) {
           var errors = httpResponse.data;
@@ -79,7 +79,6 @@ angular.module("startItControllers").controller("EventsNewController", ["$scope"
           angular.forEach(errors, function(msg, field) {
             $scope.eventErrors[field] = msg[0];
           });
-          console.log($scope.eventErrors);
         }
       )
     };
