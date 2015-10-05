@@ -41,6 +41,8 @@ angular.module("startItControllers").controller("EventsController", ["$scope", "
 angular.module("startItControllers").controller("EventsNewController", ["$scope", "Events",
   function($scope, Events) {
 
+    $scope.eventModel = {};
+
     // Set map
     $scope.mapConfig = {
       center: {
@@ -50,7 +52,19 @@ angular.module("startItControllers").controller("EventsNewController", ["$scope"
       zoom: 12
     };
 
-    $scope.eventModel = {};
+    $scope.picker = {
+      coords: $scope.mapConfig.center,
+      options: {
+        draggable: true
+      },
+      id: 1,
+      events: {
+        dragend: function (marker, eventName, args) {
+          $scope.eventModel.start_latitude = marker.getPosition().lat();
+          $scope.eventModel.start_longitude = marker.getPosition().lng();
+        }
+      }
+    }
 
     $scope.createEvent = function() {
       Events.post(

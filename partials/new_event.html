@@ -35,13 +35,13 @@
 
       <div class="form-group" ng-class="{ 'has-error': eventErrors['start_latitude'] }">
         <label for="eventStartLatitude">Start latitude</label>
-        <input type="text" ng-model="eventModel.start_latitude" class="form-control" id="eventStartLatitude" placeholder="Pick it on the map">
+        <input type="text" ng-model="eventModel.start_latitude" class="form-control" id="eventStartLatitude" placeholder="Use marker to select it on the map">
         <p class="help-block" ng-show="eventErrors['start_latitude']">{{ eventErrors['start_latitude'] }}</p>
       </div>
 
       <div class="form-group" ng-class="{ 'has-error': eventErrors['start_longitude'] }">
         <label for="eventStartLongitude">Start longitude</label>
-        <input type="text" ng-model="eventModel.start_longitude" class="form-control" id="eventStartLongitude" placeholder="Pick it on the map">
+        <input type="text" ng-model="eventModel.start_longitude" class="form-control" id="eventStartLongitude" placeholder="Use marker to select it on the map">
         <p class="help-block" ng-show="eventErrors['start_longitude']">{{ eventErrors['start_longitude'] }}</p>
       </div>
 
@@ -51,7 +51,13 @@
   </div>
 
   <div class="col-md-8">
-    <ui-gmap-google-map center="mapConfig.center" zoom="mapConfig.zoom"></ui-gmap-google-map>
+    <ui-gmap-google-map center="mapConfig.center" zoom="mapConfig.zoom">
+      <ui-gmap-marker
+        coords="picker.coords"
+        options="picker.options"
+        events="picker.events"
+        idkey="picker.id">
+      </ui-gmap-marker>
+    </ui-gmap-google-map>
   </div>
-
 </div>
