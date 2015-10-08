@@ -23,6 +23,10 @@ angular.module("startIt").config(["$routeProvider", "$authProvider",
       when("/signin", {
         templateUrl: "partials/signin.html",
         controller:  "SigninController"
+      }).
+      when("/profile", {
+        templateUrl: "partials/profile.html",
+        controller:  "ProfileController"
       });
 
     $authProvider.facebook({

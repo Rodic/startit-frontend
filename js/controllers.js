@@ -103,3 +103,16 @@ angular.module("startItControllers").controller("SigninController", ["$scope", "
     };
   }
 ]);
+
+angular.module("startItControllers").controller("ProfileController", [ "$scope", "Profile",
+  function($scope, Profile) {
+    Profile.get(
+      function success(profile, responseHeaders) {
+        $scope.profile = profile;
+      },
+      function failure(httpResponse) {
+        $scope.profile = {}
+      }
+    );
+  }
+]);
