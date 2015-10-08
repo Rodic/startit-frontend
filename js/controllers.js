@@ -96,6 +96,7 @@ angular.module("startItControllers").controller("SigninController", ["$scope", "
 
     $scope.signout = function() {
       $auth.logout();
+      $location.path('/');
     };
 
     $scope.isSinged = function() {
