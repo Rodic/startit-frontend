@@ -20,6 +20,10 @@ angular.module("startIt").config(["$routeProvider", "$authProvider",
         templateUrl: "partials/new_event.html",
         controller:  "EventsNewController"
       }).
+      when("/events/:id", {
+        templateUrl: "partials/event.html",
+        controller:  "EventController"
+      }).
       when("/signin", {
         templateUrl: "partials/signin.html",
         controller:  "SigninController"

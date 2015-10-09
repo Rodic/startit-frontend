@@ -1,0 +1,23 @@
+<div class="row panel">
+
+  <div class="col-md-4">
+    <div ng-if="event.title">
+      <h2>{{ event.title }}</h2>
+    </div>
+
+    <p>{{ event.description }}</p>
+
+    <p>Start time: {{ event.start_time }}</p>
+
+    <p>Creator: {{ event.creator.username }}</p>
+  </div>
+
+  <ui-gmap-google-map center="mapConfig.center" zoom="mapConfig.zoom">
+    <ui-gmap-marker
+      coords="event.coords"
+      idkey="event.id"
+      options = "event.options">
+    </ui-gmap-marker>
+  </ui-gmap-google-map
+
+</div>

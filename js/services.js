@@ -13,6 +13,14 @@ angular.module("startItServices").factory("Events", [ "$resource",
   }
 ]);
 
+angular.module("startItServices").factory("Event", [ "$resource",
+  function($resource) {
+    return $resource("http://localhost:3000/v1/events/:id", {}, {
+      get: { method: "GET", cache: false, isArray: false }
+    });
+  }
+]);
+
 angular.module("startItServices").factory("Profile", [ "$resource",
   function($resource) {
     return $resource("http://localhost:3000/v1/users/me", {}, {

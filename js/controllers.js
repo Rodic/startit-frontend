@@ -53,7 +53,7 @@ angular.module("startItControllers").controller("EventsNewController", ["$scope"
     };
 
     $scope.picker = {
-      coords: $scope.mapConfig.center,
+      coords: angular.copy($scope.mapConfig.center),
       options: {
         draggable: true
       },
@@ -82,6 +82,30 @@ angular.module("startItControllers").controller("EventsNewController", ["$scope"
         }
       )
     };
+  }
+]);
+
+angular.module("startItControllers").controller("EventController", ["$scope", "$routeParams", "Event",
+  function($scope, $routeParams, Event) {
+    $scope.mapConfig = {
+      zoom: 12
+    }
+    Event.get(
+      { id: $routeParams.id },
+      function success(event, responseHeaders) {
+        $scope.event = event;
+        $scope.event.coords = {
+          latitude:  event.start_latitude,
+          longitude: event.start_longitude
+        };
+        $scope.mapConfig.center = angular.copy($scope.event.coords);
+        $scope.event.options = {};
+        $scope.event.options.icon = "images/" + event.type + ".png";
+      },
+      function failure(httpResponse) {
+        $scope.event = {};
+      }
+    );
   }
 ]);
 
