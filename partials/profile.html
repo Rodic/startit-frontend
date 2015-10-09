@@ -11,10 +11,10 @@
     <ul>
       <li ng-repeat="event in profile.started_events">
         <div ng-if="event.title">
-          {{ event.title }}
+          <a href="#/events/{{event.id}}">{{ event.title }}</a>
         </div>
         <div ng-if="!event.title">
-          {{ event.description }}
+          <a href="#/events/{{event.id}}">{{ event.description }}</a>
         </div>
       </li>
     </ul>
