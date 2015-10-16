@@ -10,6 +10,12 @@
     <p>Start time: {{ event.start_time }}</p>
 
     <p>Creator: {{ event.creator.username }}</p>
+
+    <div ng-controller="SigninController">
+      <div ng-if="isSinged()">
+        <button ng-click="joinEvent()" class="btn btn-success navbar-btn">Join!</button>
+      </div>
+    </div>
   </div>
 
   <ui-gmap-google-map center="mapConfig.center" zoom="mapConfig.zoom">

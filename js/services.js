@@ -21,6 +21,14 @@ angular.module("startItServices").factory("Event", [ "$resource",
   }
 ]);
 
+angular.module("startItServices").factory("Participations", [ "$resource",
+  function($resource) {
+    return $resource("http://localhost:3000/v1/participations", {}, {
+      post: { method: "POST", cache: false, isArray: false }
+    });
+  }
+]);
+
 angular.module("startItServices").factory("Profile", [ "$resource",
   function($resource) {
     return $resource("http://localhost:3000/v1/users/me", {}, {

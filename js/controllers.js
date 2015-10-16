@@ -85,8 +85,9 @@ angular.module("startItControllers").controller("EventsNewController", ["$scope"
   }
 ]);
 
-angular.module("startItControllers").controller("EventController", ["$scope", "$routeParams", "Event",
-  function($scope, $routeParams, Event) {
+angular.module("startItControllers").controller("EventController",
+                                                ["$scope", "$routeParams", "Event", "Participations",
+  function($scope, $routeParams, Event, Participations) {
     $scope.mapConfig = {
       zoom: 12
     }
@@ -106,6 +107,17 @@ angular.module("startItControllers").controller("EventController", ["$scope", "$
         $scope.event = {};
       }
     );
+    $scope.joinEvent = function() {
+      Participations.post(
+        { participation: { event_id: $scope.event.id } },
+        function success(participation, responseHeaders) {
+          console.log(participation);
+        },
+        function failure(httpResponse) {
+          console.log(httpResponse);
+        }
+      );
+    }
   }
 ]);
 
