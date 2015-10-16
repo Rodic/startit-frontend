@@ -19,4 +19,21 @@
       </li>
     </ul>
   </div>
+
+  <div ng-if="!profile.joined_events.length">
+    <p>You don't participate in any events yet! Find events in you area and join <a href="#/">here</a></p>
+  </div>
+  <div ng-if="profile.joined_events.length">
+    <h3>Joined events:</h3>
+    <ul>
+      <li ng-repeat="event in profile.joined_events">
+        <div ng-if="event.title">
+          <a href="#/events/{{event.id}}">{{ event.title }}</a>
+        </div>
+        <div ng-if="!event.title">
+          <a href="#/events/{{event.id}}">{{ event.description }}</a>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>
