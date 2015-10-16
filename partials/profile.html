@@ -1,39 +1,48 @@
 <div class="row panel">
-  <h2>{{ profile.username }}</h2>
-
-  <p>Email: {{ profile.email }}</p>
-
-  <div ng-if="!profile.started_events.length">
-    <p>You haven't started any events yet! Fix that <a href="#/events/new">here</a></p>
-  </div>
-  <div ng-if="profile.started_events.length">
-    <h3>Started events:</h3>
-    <ul>
-      <li ng-repeat="event in profile.started_events">
-        <div ng-if="event.title">
-          <a href="#/events/{{event.id}}">{{ event.title }}</a>
-        </div>
-        <div ng-if="!event.title">
-          <a href="#/events/{{event.id}}">{{ event.description }}</a>
-        </div>
-      </li>
-    </ul>
+  <div class="well">
+    <h2>{{ profile.username }}</h2>
+    <p>Email: {{ profile.email }}</p>
   </div>
 
-  <div ng-if="!profile.joined_events.length">
-    <p>You don't participate in any events yet! Find events in you area and join <a href="#/">here</a></p>
+  <div class="col-md-6">
+    <div ng-if="!profile.started_events.length">
+      <p >You haven't started any events yet! Fix that <a href="#/events/new">here</a></p>
+    </div>
+    <div ng-if="profile.started_events.length">
+      <h3 class="list-group-item active">Started events:</h3>
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="event in profile.started_events">
+          <div ng-if="event.title">
+            <a href="#/events/{{event.id}}">{{ event.title }}</a>
+          </div>
+          <div ng-if="!event.title">
+            <a href="#/events/{{event.id}}">{{ event.description }}</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div ng-if="!profile.joined_events.length">
+      <p>You don't participate in any events yet! Find events in you area and join <a href="#/">here</a></p>
+    </div>
+    <div ng-if="profile.joined_events.length">
+      <h3 class="list-group-item active">Joined events:</h3>
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="event in profile.joined_events">
+          <div ng-if="event.title">
+            <a href="#/events/{{event.id}}">{{ event.title }}</a>
+          </div>
+          <div ng-if="!event.title">
+            <a href="#/events/{{event.id}}">{{ event.description }}</a>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
-  <div ng-if="profile.joined_events.length">
-    <h3>Joined events:</h3>
-    <ul>
-      <li ng-repeat="event in profile.joined_events">
-        <div ng-if="event.title">
-          <a href="#/events/{{event.id}}">{{ event.title }}</a>
-        </div>
-        <div ng-if="!event.title">
-          <a href="#/events/{{event.id}}">{{ event.description }}</a>
-        </div>
-      </li>
-    </ul>
+
+  <div class="col-md-6">
+
   </div>
+
+
 </div>
