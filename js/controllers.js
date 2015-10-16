@@ -38,8 +38,9 @@ angular.module("startItControllers").controller("EventsController", ["$scope", "
   }]
 );
 
-angular.module("startItControllers").controller("EventsNewController", ["$scope", "Events", "$location",
-  function($scope, Events, $location) {
+angular.module("startItControllers").controller("EventsNewController",
+  ["$scope", "Events", "$location", "LocalProfile",
+  function($scope, Events, $location, LocalProfile) {
 
     $scope.eventModel = {};
 
@@ -71,6 +72,7 @@ angular.module("startItControllers").controller("EventsNewController", ["$scope"
         { event: $scope.eventModel },
         function success(event, responseHeaders) {
           $scope.eventErrors = {};
+          LocalProfile.update();
           $location.path("/");
         },
         function failure(httpResponse) {
@@ -86,7 +88,7 @@ angular.module("startItControllers").controller("EventsNewController", ["$scope"
 ]);
 
 angular.module("startItControllers").controller("EventController",
-                                                ["$scope", "$routeParams", "Event", "Participations",
+  ["$scope", "$routeParams", "Event", "Participations",
   function($scope, $routeParams, Event, Participations) {
     $scope.mapConfig = {
       zoom: 12
@@ -121,34 +123,27 @@ angular.module("startItControllers").controller("EventController",
   }
 ]);
 
-angular.module("startItControllers").controller("SessionsController", ["$scope", "$auth", "$location", "Profile",
-  function($scope, $auth, $location, Profile) {
+angular.module("startItControllers").controller("SessionsController",
+  ["$scope", "$auth", "$location", "LocalProfile",
+  function($scope, $auth, $location, LocalProfile) {
 
     $scope.authenticate = function(provider) {
       $auth.authenticate(provider).then(function() {
-        Profile.get(
-          function success(profile, responseHeaders) {
-            localStorage.profile = btoa(encodeURIComponent(JSON.stringify(profile)));
-          }
-        );
+        LocalProfile.update();
         $location.path('/');
       });
     };
 
+    $scope.profile = LocalProfile.get();
+
     $scope.signout = function() {
       $auth.logout();
-      delete localStorage.profile;
+      LocalProfile.destroy();
       $location.path('/');
     };
 
     $scope.isSinged = function() {
       return $auth.isAuthenticated();
     };
-  }
-]);
-
-angular.module("startItControllers").controller("ProfileController", [ "$scope", "Profile",
-  function($scope, Profile) {
-    $scope.profile = JSON.parse(decodeURIComponent(atob(localStorage.profile)));
   }
 ]);

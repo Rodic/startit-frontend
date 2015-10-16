@@ -30,7 +30,7 @@ angular.module("startIt").config(["$routeProvider", "$authProvider",
       }).
       when("/profile", {
         templateUrl: "partials/profile.html",
-        controller:  "ProfileController"
+        controller:  "SessionsController"
       });
 
     $authProvider.facebook({
