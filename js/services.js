@@ -36,3 +36,23 @@ angular.module("startItServices").factory("Profile", [ "$resource",
     });
   }
 ]);
+
+angular.module("startItServices").factory("LocalProfile", [ "Profile",
+  function(Profile) {
+    return {
+      update: function() {
+        Profile.get(
+          function success(profile, responseHeaders) {
+            localStorage.profile = btoa(encodeURIComponent(JSON.stringify(profile)));
+          }
+        );
+      },
+      get: function() {
+        return localStorage.profile ? JSON.parse(decodeURIComponent(atob(localStorage.profile))) : {};
+      },
+      destroy: function() {
+        delete localStorage.profile;
+      }
+    };
+  }
+]);
