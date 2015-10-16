@@ -12,7 +12,7 @@
     <p>Creator: {{ event.creator.username }}</p>
 
     <div ng-controller="SessionsController">
-      <div ng-if="isSinged()">
+      <div ng-if="isSinged() && notParticipating(event)">
         <button ng-click="joinEvent()" class="btn btn-success navbar-btn">Join!</button>
       </div>
     </div>

@@ -145,5 +145,15 @@ angular.module("startItControllers").controller("SessionsController",
     $scope.isSinged = function() {
       return $auth.isAuthenticated();
     };
+
+    $scope.notParticipating = function(event) {
+      var inJoinedEvents = false;
+      angular.forEach($scope.profile.joined_events, function(joined_event) {
+        if (event && joined_event.id === event.id) {
+          inJoinedEvents = true;
+        }
+      });
+      return event && !inJoinedEvents && event.creator.id !== $scope.profile.id;
+    };
   }
 ]);
