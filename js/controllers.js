@@ -121,17 +121,23 @@ angular.module("startItControllers").controller("EventController",
   }
 ]);
 
-angular.module("startItControllers").controller("SigninController", ["$scope", "$auth", "$location",
-  function($scope, $auth, $location) {
+angular.module("startItControllers").controller("SigninController", ["$scope", "$auth", "$location", "Profile",
+  function($scope, $auth, $location, Profile) {
 
     $scope.authenticate = function(provider) {
       $auth.authenticate(provider).then(function() {
+        Profile.get(
+          function success(profile, responseHeaders) {
+            localStorage.profile = btoa(encodeURIComponent(JSON.stringify(profile)));
+          }
+        );
         $location.path('/');
       });
     };
 
     $scope.signout = function() {
       $auth.logout();
+      delete localStorage.profile;
       $location.path('/');
     };
 
@@ -143,13 +149,6 @@ angular.module("startItControllers").controller("SigninController", ["$scope", "
 
 angular.module("startItControllers").controller("ProfileController", [ "$scope", "Profile",
   function($scope, Profile) {
-    Profile.get(
-      function success(profile, responseHeaders) {
-        $scope.profile = profile;
-      },
-      function failure(httpResponse) {
-        $scope.profile = {}
-      }
-    );
+    $scope.profile = JSON.parse(decodeURIComponent(atob(localStorage.profile)));
   }
 ]);
