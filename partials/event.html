@@ -11,7 +11,7 @@
 
     <p>Creator: {{ event.creator.username }}</p>
 
-    <div ng-controller="SigninController">
+    <div ng-controller="SessionsController">
       <div ng-if="isSinged()">
         <button ng-click="joinEvent()" class="btn btn-success navbar-btn">Join!</button>
       </div>

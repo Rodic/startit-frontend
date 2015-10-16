@@ -121,7 +121,7 @@ angular.module("startItControllers").controller("EventController",
   }
 ]);
 
-angular.module("startItControllers").controller("SigninController", ["$scope", "$auth", "$location", "Profile",
+angular.module("startItControllers").controller("SessionsController", ["$scope", "$auth", "$location", "Profile",
   function($scope, $auth, $location, Profile) {
 
     $scope.authenticate = function(provider) {

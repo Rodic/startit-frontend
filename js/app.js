@@ -26,7 +26,7 @@ angular.module("startIt").config(["$routeProvider", "$authProvider",
       }).
       when("/signin", {
         templateUrl: "partials/signin.html",
-        controller:  "SigninController"
+        controller:  "SessionsController"
       }).
       when("/profile", {
         templateUrl: "partials/profile.html",
