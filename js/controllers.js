@@ -88,8 +88,8 @@ angular.module("startItControllers").controller("EventsNewController",
 ]);
 
 angular.module("startItControllers").controller("EventController",
-  ["$scope", "$routeParams", "Event", "Participations",
-  function($scope, $routeParams, Event, Participations) {
+  ["$scope", "$routeParams", "Event", "Participations", "LocalProfile",
+  function($scope, $routeParams, Event, Participations, LocalProfile) {
     $scope.mapConfig = {
       zoom: 12
     }
@@ -113,10 +113,11 @@ angular.module("startItControllers").controller("EventController",
       Participations.post(
         { participation: { event_id: $scope.event.id } },
         function success(participation, responseHeaders) {
-          console.log(participation);
+          LocalProfile.update();
+          $scope.event.participants.push(LocalProfile.get());
         },
         function failure(httpResponse) {
-          console.log(httpResponse);
+          //
         }
       );
     }
@@ -134,7 +135,7 @@ angular.module("startItControllers").controller("SessionsController",
       });
     };
 
-    $scope.profile = LocalProfile.get();
+    $scope.profile = LocalProfile;
 
     $scope.signout = function() {
       $auth.logout();
@@ -144,16 +145,6 @@ angular.module("startItControllers").controller("SessionsController",
 
     $scope.isSinged = function() {
       return $auth.isAuthenticated();
-    };
-
-    $scope.notParticipating = function(event) {
-      var inJoinedEvents = false;
-      angular.forEach($scope.profile.joined_events, function(joined_event) {
-        if (event && joined_event.id === event.id) {
-          inJoinedEvents = true;
-        }
-      });
-      return event && !inJoinedEvents && event.creator.id !== $scope.profile.id;
     };
   }
 ]);

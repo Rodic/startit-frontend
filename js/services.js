@@ -52,6 +52,16 @@ angular.module("startItServices").factory("LocalProfile", [ "Profile",
       },
       destroy: function() {
         delete localStorage.profile;
+      },
+      participating: function(event) {
+        var inJoinedEvents = false;
+        angular.forEach(this.get().joined_events, function(joined_event) {
+          if (event && joined_event.id === event.id) {
+            inJoinedEvents = true;
+            return;
+          }
+        });
+        return event && (inJoinedEvents || event.creator.id === this.get().id);
       }
     };
   }

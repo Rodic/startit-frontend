@@ -69,7 +69,7 @@
                 <a href="#/signin" class="btn btn-primary navbar-btn">Sign in</a>
               </div>
               <div ng-if="isSinged()">
-                <a href="#/profile" class="btn btn-default navbar-btn">{{ profile.username }}</a>
+                <a href="#/profile" class="btn btn-default navbar-btn">{{ profile.get().username }}</a>
                 <a href="#/events/new" class="btn btn-success navbar-btn">Create new Event!</a>
                 <a ng-click="signout()" href="" class="btn btn-primary navbar-btn">Sign out</a>
               </div>

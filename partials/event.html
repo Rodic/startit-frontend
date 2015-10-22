@@ -11,8 +11,15 @@
 
     <p>Creator: {{ event.creator.username }}</p>
 
+    <div>
+      Participants:
+      <ul>
+        <li ng-repeat="participant in event.participants">{{ participant.username }}</li>
+      </ul>
+    </div>
+
     <div ng-controller="SessionsController">
-      <div ng-if="isSinged() && notParticipating(event)">
+      <div ng-if="isSinged() && !profile.participating(event)">
         <button ng-click="joinEvent()" class="btn btn-success navbar-btn">Join!</button>
       </div>
     </div>
